@@ -1,3 +1,5 @@
+import csv
+import datetime
 import pymysql
 from contextlib import closing
 from django.db import IntegrityError
@@ -41,4 +43,37 @@ def import_from_db(request):
                         result += str(journal) + f' ({str(e)}) <br>'
                     else:
                         raise e
+    return HttpResponse(result)
+
+
+def import_from_csv_file(request):
+    def parse_date(date_str):
+        dates = list(reversed(date_str.strip().split('.')))
+        year = int(dates[0])
+        month = int(dates[1])
+        day = int(dates[2]) if len(dates) >= 3 else 1
+        return datetime.date(year, month, day)
+
+    result = ''
+    with open('/home/phpusr/Downloads/Сериалы (посмотрел, смотрю) - Лист1.csv') as csv_file:
+        reader = csv.DictReader(csv_file)
+
+        for row in reader:
+            print(row)
+            try:
+                journal = Journal.objects.get(original_name=row['Оригинальное'].strip())
+            except Journal.DoesNotExist:
+                journal = Journal(original_name=row['Оригинальное'].strip())
+            journal.status = Status.objects.get(name=row['Статус'].strip())
+            journal.local_name = row['Название'].strip()
+            journal.original_name = row['Оригинальное'].strip()
+            journal.last_watched_season = row['Последний просм. сезон'].strip()
+            journal.last_watched_series = row['Послед. просм. серия'].strip()
+            journal.last_watched_date = parse_date(row['Дата'])
+            journal.rating = row['Оценка (макс. 5)'].strip()
+            journal.comment = row['Комментарий'].strip()
+
+            journal.save()
+            result += str(journal) + '<br>'
+
     return HttpResponse(result)
