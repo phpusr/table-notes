@@ -20,3 +20,5 @@ urlpatterns = [
     path('series/', include('tv_series.urls')),
     path('', admin.site.urls),
 ]
+
+admin.site.site_header = 'Table Notes'
