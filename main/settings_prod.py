@@ -13,3 +13,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'data', 'db_prod.sqlite3'),
     }
 }
+
+# TODO Change it
+SECRET_KEY = 'l!h5vuplda*f!&pa9dr742i*ak^w-8+ifgrk_3=-g==!c)3ne('
