@@ -14,6 +14,14 @@ Modules
 
 Module for saving information about watched TV series.
 
+__Viewed TV series journal__
+
+<img src="https://i.imgur.com/Rg7yG5r.png" width="1000px" /></br>
+
+__View and edit record of journal__
+
+<img src="https://i.imgur.com/RY1jfT6.png" width="500px" />
+
 #### Data fields
 
 - Local name series
