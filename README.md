@@ -32,11 +32,14 @@ How to run
 
 - Install Python 3
 - `pip install --upgrade pip && pip install -r requirements.txt`
+- Create db: `./manage.py migrate`
 - `./manage.py runserver [port]`
 
 ### Production mode
 
-- Install Docker and Docker Compose
+- Install [Docker](https://docs.docker.com/install/) and [Docker Compose](https://docs.docker.com/compose/install/)
+- Create production db (once): `export DJANGO_SETTINGS_MODULE=main.settings_prod && ./manage.py migrate` 
 - Run docker container (it will build container if not exists): `docker-compose up` 
-- Force rebuild docker container and run: `docker-compose up --build`
+    - Force rebuild docker container and run: `docker-compose up --build`
+- Open in browser: `http://localhost:8001`
  
