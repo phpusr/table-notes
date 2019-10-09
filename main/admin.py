@@ -3,14 +3,31 @@ from django.contrib import admin
 admin.site.site_header = 'Tabular Notes'
 
 
+class OwnerListFilter(admin.SimpleListFilter):
+    title = 'owner list filter'
+    parameter_name = 'owner'
+
+    def lookups(self, request, model_admin):
+        # TODO change it
+        return [
+            ['phpusr', 'phpusr'],
+            ['user', 'user'],
+        ]
+
+    def queryset(self, request, queryset):
+        if self.value() is not None:
+            return queryset.filter(owner__username=self.value())
+
+
 class OwnerAdmin(admin.ModelAdmin):
 
     list_display = ['name', 'owner']
     search_fields = ['name']
     readonly_fields = ['owner']
+    list_filter = []
 
     def get_search_results(self, request, queryset, search_term):
-        view_other = self.__has_view_other(request.user) and request.GET.get('owner__id__exact') is not None
+        view_other = self.__has_view_other(request.user) and request.GET.get('owner') is not None
 
         if not request.user.is_superuser and not view_other:
             queryset = queryset.filter(owner__id=request.user.id)
@@ -38,11 +55,12 @@ class OwnerAdmin(admin.ModelAdmin):
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
     def get_list_filter(self, request, obj=None):
-        if 'owner' not in self.list_filter:
-            self.list_filter.append('owner')
+        if OwnerListFilter not in self.list_filter:
+            self.list_filter.append(OwnerListFilter)
 
-        if not self.__has_view_other(request.user):
-            self.list_filter.remove('owner')
+        # TODO
+        # if not self.__has_view_other(request.user):
+        #     self.list_filter.remove(OwnerListFilter)
 
         return self.list_filter
 
@@ -56,4 +74,4 @@ class OwnerAdmin(admin.ModelAdmin):
         Check what user may view content of other users
         :return: If user has group with name "view_other" that return True else False
         """
-        return user.groups.filter(name='view_other').count() > 0
+        return user.is_superuser or user.groups.filter(name='view_other').count() > 0
