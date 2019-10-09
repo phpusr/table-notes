@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'main',
     'tv_series',
     'django.contrib.admin',
     'django.contrib.auth',
