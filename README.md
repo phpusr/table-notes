@@ -1,7 +1,7 @@
 Tabular Notes
 =============
 
-Simple application written in Django for keeping tabular notes.
+Simple multi user application written in Django for keeping tabular notes.
 
 The application consists of several modules: tv_series, ...
 
@@ -36,18 +36,47 @@ __View and edit record of journal__
 How to run
 ----------
 
-### Develop mode
+### Developed mode
 
-- Install Python 3
-- `pip install --upgrade pip && pip install -r requirements.txt`
-- Create db: `./manage.py migrate`
-- `./manage.py runserver [port]`
+Install Python 3
+
+Install dependencies
+
+```bash
+pip install --upgrade pip && pip install -r requirements.txt
+```
+
+Create DB (once)
+
+`./manage.py migrate`
+
+Run
+
+```bash
+./manage.py runserver [port]
+```
 
 ### Production mode
 
-- Install [Docker](https://docs.docker.com/install/) and [Docker Compose](https://docs.docker.com/compose/install/)
-- Create production db (once): `export DJANGO_SETTINGS_MODULE=main.settings_prod && ./manage.py migrate` 
-- Run docker container (it will build container if not exists): `docker-compose up` 
-    - Force rebuild docker container and run: `docker-compose up --build`
-- Open in browser: `http://localhost:8001`
+Install [Docker](https://docs.docker.com/install/) and [Docker Compose](https://docs.docker.com/compose/install/)
+
+Create production DB (once)
+
+```bash
+export DJANGO_SETTINGS_MODULE=main.settings_prod && ./manage.py migrate
+```
+ 
+Run docker container (it will build container if not exists)
+
+```bash
+docker-compose up
+```
+
+Or force rebuild docker container and run
+
+```bash
+docker-compose up --build
+```
+
+Open in browser `http://localhost:8001`
  
