@@ -1,9 +1,10 @@
+from django.conf import settings
 from django.contrib import admin
 from django.contrib.auth import admin as auth_admin
 
 from .models import User
 
-admin.site.site_header = 'Tabular Notes'
+admin.site.site_header = f"Tabular Notes (v{settings.VERSION}-{'dev' if settings.DEBUG else 'prod'})"
 
 
 @admin.register(User)
