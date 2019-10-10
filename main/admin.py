@@ -31,7 +31,7 @@ class OwnerListFilter(admin.SimpleListFilter):
             return users_to_tuple(User.objects.all())
 
         all_friends = list(current_user.friends.all())
-        if len(all_friends) > 0:
+        if len(all_friends) > 0 and current_user not in all_friends:
             all_friends.append(current_user)
 
         return users_to_tuple(all_friends)
@@ -47,11 +47,22 @@ class OwnerAdmin(admin.ModelAdmin):
     readonly_fields = ['owner']
     list_filter = []
 
-    def get_search_results(self, request, queryset, search_term):
-        owner_username = request.GET.get('owner')
-        is_owner_friend = request.user.friends.filter(username=owner_username).exists()
+    def get_queryset(self, request):
+        queryset = super().get_queryset(request)
+        current_user = request.user
+        if current_user.is_superuser:
+            return queryset
 
-        if not (request.user.is_superuser or is_owner_friend):
+        friends = list(current_user.friends.all())
+        if current_user not in friends:
+            friends.append(current_user)
+
+        return queryset.filter(owner__in=friends)
+
+    def get_search_results(self, request, queryset, search_term):
+        is_filter_by_owner = 'owner' in request.GET
+
+        if not (request.user.is_superuser or is_filter_by_owner):
             queryset = queryset.filter(owner__id=request.user.id)
 
         return super().get_search_results(request, queryset, search_term)
@@ -60,15 +71,6 @@ class OwnerAdmin(admin.ModelAdmin):
         if not hasattr(obj, 'owner'):
             obj.owner = request.user
         super().save_model(request, obj, form, change)
-
-    def has_view_permission(self, request, obj=None):
-        if obj is not None:
-            is_owner_friend = request.user.friends.filter(pk=obj.owner_id).exists()
-        else:
-            is_owner_friend = False
-
-        return super().has_view_permission(request, obj) \
-               and (self._is_owner(request.user, obj) or is_owner_friend)
 
     def has_change_permission(self, request, obj=None):
         return super().has_change_permission(request, obj) and self._is_owner(request.user, obj)
