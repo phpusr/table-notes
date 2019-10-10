@@ -1,6 +1,14 @@
 from django.contrib import admin
+from django.contrib.auth import admin as auth_admin
+
+from .models import User
 
 admin.site.site_header = 'Tabular Notes'
+
+
+@admin.register(User)
+class UserAdmin(auth_admin.UserAdmin):
+    pass
 
 
 class OwnerListFilter(admin.SimpleListFilter):
@@ -20,7 +28,6 @@ class OwnerListFilter(admin.SimpleListFilter):
 
 
 class OwnerAdmin(admin.ModelAdmin):
-
     list_display = ['name', 'owner']
     search_fields = ['name']
     readonly_fields = ['owner']
