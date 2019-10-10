@@ -8,7 +8,13 @@ admin.site.site_header = 'Tabular Notes'
 
 @admin.register(User)
 class UserAdmin(auth_admin.UserAdmin):
-    pass
+    filter_horizontal = ('groups', 'user_permissions', 'friends')
+
+    def get_fieldsets(self, request, obj=None):
+        first_dict = self.fieldsets[0][1]
+        if 'friends' not in first_dict['fields']:
+            first_dict['fields'] = first_dict['fields'] + ('friends',)
+        return self.fieldsets
 
 
 class OwnerListFilter(admin.SimpleListFilter):
