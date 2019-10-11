@@ -1,31 +1,22 @@
 from django.db import models
 from django.utils import timezone
 
-from main.models import OwnerModel
+from main.models import OwnerModel, NameModel
 
 
-class Author(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-
-    def __str__(self):
-        return self.name
+class Author(OwnerModel, NameModel):
+    pass
 
 
-class Genre(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-
-    def __str__(self):
-        return self.name
+class Genre(OwnerModel, NameModel):
+    pass
 
 
-class Category(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-
-    def __str__(self):
-        return self.name
+class Category(OwnerModel, NameModel):
+    pass
 
 
-class Book(models.Model):
+class Book(OwnerModel):
     title = models.CharField(max_length=100)
     authors = models.ManyToManyField(Author, blank=True)
     genre = models.ForeignKey(Genre, on_delete=models.PROTECT, null=True, blank=True)
@@ -40,12 +31,7 @@ class Book(models.Model):
         ]
 
 
-class Source(OwnerModel):
-    name = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.name
-
+class Source(OwnerModel, NameModel):
     class Meta:
         unique_together = [
             ['owner', 'name']

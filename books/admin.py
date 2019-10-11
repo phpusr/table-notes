@@ -7,22 +7,23 @@ admin.site.register(Source, OwnerAdmin)
 
 
 @admin.register(Author)
-class AuthorAdmin(admin.ModelAdmin):
-    search_fields = ['name']
+class AuthorAdmin(OwnerAdmin):
+    pass
 
 
 @admin.register(Genre)
-class GenreAdmin(admin.ModelAdmin):
-    search_fields = ['name']
+class GenreAdmin(OwnerAdmin):
+    pass
 
 
 @admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    search_fields = ['name']
+class CategoryAdmin(OwnerAdmin):
+    pass
 
 
 @admin.register(Book)
-class BookAdmin(admin.ModelAdmin):
+class BookAdmin(OwnerAdmin):
+    list_display = ['title']
     search_fields = ['title']
     autocomplete_fields = ['authors', 'genre', 'category']
 
