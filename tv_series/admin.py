@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from main.admin import OwnerAdmin
-from tv_series.models import Status, Journal
+from .models import Status, Journal
 
 admin.site.register(Status, OwnerAdmin)
 

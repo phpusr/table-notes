@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # Local
     'tv_series',
+    'books'
 ]
 
 MIDDLEWARE = [

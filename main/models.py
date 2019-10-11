@@ -7,7 +7,7 @@ class User(AbstractUser):
 
 
 class OwnerModel(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.PROTECT)
+    owner = models.ForeignKey(User, on_delete=models.PROTECT, related_name='+')
 
     class Meta:
         abstract = True
