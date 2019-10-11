@@ -43,9 +43,9 @@ class OwnerListFilter(admin.SimpleListFilter):
 
 
 class OwnerAdmin(admin.ModelAdmin):
-    list_display = ['name', 'owner']
+    list_display = ['name']
     search_fields = ['name']
-    readonly_fields = ['owner']
+    readonly_fields = []
     list_filter = []
 
     def get_queryset(self, request):
@@ -80,9 +80,22 @@ class OwnerAdmin(admin.ModelAdmin):
         return super().has_delete_permission(request, obj) and self._is_owner(request.user, obj)
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
-        if not request.user.is_superuser:
-            kwargs["queryset"] = db_field.related_model.objects.filter(owner=request.user)
+        model = db_field.related_model
+        if not request.user.is_superuser and hasattr(db_field.related_model, 'owner'):
+            kwargs["queryset"] = model.objects.filter(owner=request.user)
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
+
+    def get_list_display(self, request):
+        if request.user.is_superuser and 'owner' not in self.list_display:
+            self.list_display.append('owner')
+
+        return self.list_display
+
+    def get_readonly_fields(self, request, obj=None):
+        if 'owner' not in self.readonly_fields:
+            self.readonly_fields.append('owner')
+
+        return self.readonly_fields
 
     def get_list_filter(self, request, obj=None):
         if OwnerListFilter not in self.list_filter:
