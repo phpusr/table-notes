@@ -5,21 +5,21 @@ from main.models import OwnerModel
 
 
 class Author(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.name
 
 
 class Genre(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.name
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.name
@@ -34,9 +34,22 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        unique_together = [
+            ['title', 'genre']
+        ]
+
 
 class Source(OwnerModel):
     name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        unique_together = [
+            ['owner', 'name']
+        ]
 
 
 class Journal(OwnerModel):
@@ -49,8 +62,16 @@ class Journal(OwnerModel):
     note = models.TextField(blank=True)
 
     @property
-    def days_count(self):
+    def days_number(self):
+        if self.end_date is None or self.start_date is None:
+            return '-'
+
         return (self.end_date - self.start_date).days
 
     def __str__(self):
-        return '-'
+        return str(self.book)
+
+    class Meta:
+        unique_together = [
+            ['owner', 'book']
+        ]
