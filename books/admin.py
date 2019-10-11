@@ -10,4 +10,4 @@ admin.site.register(Source, admin.ModelAdmin)
 
 @admin.register(Journal)
 class JournalAdmin(OwnerAdmin):
-    list_display = []
+    list_display = ['book', 'add_date']

@@ -14,16 +14,25 @@ class Author(models.Model):
 class Genre(models.Model):
     name = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
+
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
 
 
 class Book(models.Model):
     title = models.CharField(max_length=100)
     authors = models.ManyToManyField(Author, blank=True)
-    genre = models.ForeignKey(Genre, on_delete=models.PROTECT)
-    category = models.ForeignKey(Category, on_delete=models.PROTECT)
+    genre = models.ForeignKey(Genre, on_delete=models.PROTECT, null=True, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, null=True, blank=True)
+
+    def __str__(self):
+        return self.title
 
 
 class Source(OwnerModel):
@@ -32,7 +41,7 @@ class Source(OwnerModel):
 
 class Journal(OwnerModel):
     book = models.ForeignKey(Book, on_delete=models.PROTECT)
-    source = models.ForeignKey(Source, on_delete=models.PROTECT)
+    source = models.ForeignKey(Source, on_delete=models.PROTECT, null=True, blank=True)
     add_date = models.DateField(default=timezone.now)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
