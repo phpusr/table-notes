@@ -36,9 +36,9 @@ def import_from_csv_file(request):
 
             book, created_book = Book.objects.get_or_create(owner=user, title=row['Название'].strip())
             if created_book:
-                author = get_or_create_object(Author, row['Автор'])
-                if author is not None:
-                    book.authors.add(author)
+                for author_name in row['Автор'].split(','):
+                    if author_name != '':
+                        book.authors.add(get_or_create_object(Author, author_name))
                 book.genre = get_or_create_object(Genre, row['Жанр'])
                 book.category = get_or_create_object(Category, row['Категория'])
                 book.save()
