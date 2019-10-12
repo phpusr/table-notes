@@ -5,20 +5,9 @@ from .models import Author, Book, Source, Journal, Genre, Category
 
 admin.site.register(Source, OwnerAdmin)
 
-
-@admin.register(Author)
-class AuthorAdmin(OwnerPublicAdmin):
-    pass
-
-
-@admin.register(Genre)
-class GenreAdmin(OwnerPublicAdmin):
-    pass
-
-
-@admin.register(Category)
-class CategoryAdmin(OwnerPublicAdmin):
-    pass
+admin.site.register(Author, OwnerPublicAdmin)
+admin.site.register(Genre, OwnerPublicAdmin)
+admin.site.register(Category, OwnerPublicAdmin)
 
 
 @admin.register(Book)
