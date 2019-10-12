@@ -1,4 +1,5 @@
 import csv
+from django.conf import settings
 from django.http import HttpResponse
 
 from main.models import User
@@ -18,7 +19,7 @@ def import_from_csv_file(request):
 
         return obj
 
-    if request.GET.get('clear') == '1':
+    if settings.DEBUG and request.GET.get('clear') == '1':
         Journal.objects.all().delete()
         Source.objects.all().delete()
         Book.objects.all().delete()
