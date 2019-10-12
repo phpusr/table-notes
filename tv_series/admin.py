@@ -32,4 +32,5 @@ class JournalAdmin(OwnerAdmin):
                     'last_watched_date', 'rating', 'comment', 'owner']
     list_filter = [StatusListFilter, 'rating']
     search_fields = ['local_name', 'original_name', 'comment']
+    autocomplete_fields = ['status']
 
