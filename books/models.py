@@ -38,7 +38,7 @@ class Source(NameOwnerModel):
 class Journal(OwnerModel):
     book = models.ForeignKey(Book, on_delete=models.PROTECT)
     source = models.ForeignKey(Source, on_delete=models.PROTECT, null=True, blank=True)
-    add_date = models.DateField(default=timezone.now)
+    add_date = models.DateField(default=timezone.now, null=True)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
     pages_number = models.PositiveIntegerField(null=True, blank=True)
