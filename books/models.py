@@ -45,7 +45,7 @@ class Journal(OwnerModel):
     note = models.TextField(blank=True)
 
     @property
-    def days_number(self):
+    def days_spent(self):
         if self.end_date is None or self.start_date is None:
             return '-'
 
