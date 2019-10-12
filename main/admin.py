@@ -106,3 +106,20 @@ class OwnerAdmin(admin.ModelAdmin):
     @staticmethod
     def _is_owner(user, obj):
         return obj is None or obj.owner_id == user.id or user.is_superuser
+
+
+class OwnerPublicAdmin(OwnerAdmin):
+    def get_queryset(self, request):
+        return admin.ModelAdmin.get_queryset(self, request)
+
+    def get_search_results(self, request, queryset, search_term):
+        return admin.ModelAdmin.get_search_results(self, request, queryset, search_term)
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        return admin.ModelAdmin.formfield_for_foreignkey(self, db_field, request, **kwargs)
+
+    def get_list_display(self, request):
+        if 'owner' not in self.list_display:
+            self.list_display.append('owner')
+
+        return self.list_display

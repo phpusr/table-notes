@@ -1,28 +1,28 @@
 from django.contrib import admin
 
-from main.admin import OwnerAdmin
+from main.admin import OwnerAdmin, OwnerPublicAdmin
 from .models import Author, Book, Source, Journal, Genre, Category
 
 admin.site.register(Source, OwnerAdmin)
 
 
 @admin.register(Author)
-class AuthorAdmin(OwnerAdmin):
+class AuthorAdmin(OwnerPublicAdmin):
     pass
 
 
 @admin.register(Genre)
-class GenreAdmin(OwnerAdmin):
+class GenreAdmin(OwnerPublicAdmin):
     pass
 
 
 @admin.register(Category)
-class CategoryAdmin(OwnerAdmin):
+class CategoryAdmin(OwnerPublicAdmin):
     pass
 
 
 @admin.register(Book)
-class BookAdmin(OwnerAdmin):
+class BookAdmin(OwnerPublicAdmin):
     list_display = ['title']
     search_fields = ['title']
     autocomplete_fields = ['authors', 'genre', 'category']
