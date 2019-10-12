@@ -1,6 +1,8 @@
 import csv
+import tempfile
 from django.conf import settings
 from django.http import HttpResponse
+from django.middleware.csrf import get_token
 
 from main.models import User
 from main.util import parse_date
@@ -8,6 +10,18 @@ from .models import Book, Author, Genre, Category, Source, Journal
 
 
 def import_from_csv_file(request):
+    if request.method == 'GET':
+        csrf_token = get_token(request)
+        result = f'''
+        <h3>import_from_csv_file</h3>
+        <form method='post' enctype="multipart/form-data">
+            <input type="hidden" name="csrfmiddlewaretoken" value="{csrf_token}" />
+            <input type="file" name="csv_file" />
+            <button>Submit</button>
+        </form>
+        '''
+        return HttpResponse(result)
+
     user = User.objects.get(pk=1)
 
     def get_or_create_object(clazz, name):
@@ -27,10 +41,16 @@ def import_from_csv_file(request):
         Genre.objects.all().delete()
         Author.objects.all().delete()
 
-    result = ''
+    result = '<h3>Imported books</h3><br/>'
 
-    with open('/home/phpusr/Downloads/Книги - Ответы на форму (1).csv') as csv_file:
-        reader = reversed(list(csv.DictReader(csv_file)))
+    upload_file = request.FILES['csv_file']
+    tmp_file = tempfile.NamedTemporaryFile(delete=False)
+    with tmp_file as file:
+        for chunk in upload_file.chunks():
+            file.write(chunk)
+
+    with open(tmp_file.name) as file:
+        reader = reversed(list(csv.DictReader(file)))
 
         for row in reader:
             print(row)
