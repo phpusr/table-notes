@@ -58,6 +58,7 @@
     <!-- END Header -->
 
     <!-- Navigation -->
+    {% if user.is_authenticated %}
     <div class="breadcrumbs" style="background: #598ca5">
         <a href="{% url 'admin:tv_series_journal_changelist' %}">{% trans 'TV series' %}</a> |
         <a href="{% url 'admin:books_journal_changelist' %}">{% trans 'Books' %}</a>
@@ -68,6 +69,7 @@
             ]
         </div>
     </div>
+    {% endif %}
     <!-- END Navigation -->
 
     {% block breadcrumbs %}
