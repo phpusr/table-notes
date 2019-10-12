@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.urls import reverse
+from django.utils.html import format_html
 
 from main.admin import OwnerAdmin, OwnerPublicAdmin
 from .models import Author, Book, Source, Journal, Genre, Category
@@ -11,7 +13,10 @@ class SourceAdmin(OwnerAdmin):
 
     @staticmethod
     def journals(obj):
-        return ', '.join([str(x) for x in obj.journal_set.all()])
+        def journal_to_link(journal):
+            return f'<a href="{reverse("admin:books_journal_change", args=[journal.pk])}">{str(journal)}</a>'
+
+        return format_html('<br/>'.join([journal_to_link(x) for x in obj.journal_set.all()]))
 
 
 admin.site.register(Author, OwnerPublicAdmin)
