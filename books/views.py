@@ -29,7 +29,7 @@ def import_from_csv_file(request):
     result = ''
 
     with open('/home/phpusr/Downloads/Книги - Ответы на форму (1).csv') as csv_file:
-        reader = csv.DictReader(csv_file)
+        reader = reversed(list(csv.DictReader(csv_file)))
 
         for row in reader:
             print(row)
