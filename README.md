@@ -39,11 +39,11 @@ Module for saving information about read books
 
 __Viewed read books journal__
 
-<img src="https://i.imgur.com/cfNVvY4.png" width="1000px" /></br>
+<img src="https://i.imgur.com/ocdXyz7.png" width="1000px" /></br>
 
 __View and edit record of journal__
 
-<img src="https://i.imgur.com/xXAzw8M.png" width="500px" />
+<img src="https://i.imgur.com/9WkdkBx.png" width="500px" />
 
 #### Data fields
 
@@ -111,8 +111,8 @@ Changelist
 ----------
 
 - v1.0 (07.07.2019)
-    - Add "tv_series" module
+    - Added "tv_series" module
 - v1.1 (10.10.2019)
-    - Add multi user ability
+    - Added multi user ability
 - v1.2 (12.10.2019)
-    - Add "books" module
+    - Added "books" module
