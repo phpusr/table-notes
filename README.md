@@ -106,3 +106,13 @@ docker-compose up --build
 ```
 
 Open in browser `http://localhost:8001`
+
+Changelist
+----------
+
+- v1.0 (07.07.2019)
+    - Add "tv_series" module
+- v1.1 (10.10.2019)
+    - Add multi user ability
+- v1.2 (12.10.2019)
+    - Add "books" module
