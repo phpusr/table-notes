@@ -1,11 +1,11 @@
 import csv
-import datetime
 import pymysql
 from contextlib import closing
 from django.db import IntegrityError
 from django.http import HttpResponse
 from pymysql.cursors import DictCursor
 
+from main.util import parse_date
 from tv_series.models import Journal, Status
 
 
@@ -47,13 +47,6 @@ def import_from_db(request):
 
 
 def import_from_csv_file(request):
-    def parse_date(date_str):
-        dates = list(reversed(date_str.strip().split('.')))
-        year = int(dates[0])
-        month = int(dates[1])
-        day = int(dates[2]) if len(dates) >= 3 else 1
-        return datetime.date(year, month, day)
-
     result = ''
     with open('/home/phpusr/Downloads/Сериалы (посмотрел, смотрю) - Лист1.csv') as csv_file:
         reader = csv.DictReader(csv_file)
