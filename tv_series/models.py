@@ -1,13 +1,10 @@
 from django.db import models
 
-from main.models import OwnerModel
+from main.models import OwnerModel, NameOwnerModel
 
 
-class Status(OwnerModel):
-    name = models.CharField(max_length=10)
-
-    def __str__(self):
-        return self.name
+class Status(NameOwnerModel):
+    pass
 
 
 class Journal(OwnerModel):

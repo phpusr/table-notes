@@ -1,18 +1,18 @@
 from django.db import models
 from django.utils import timezone
 
-from main.models import OwnerModel, NameModel
+from main.models import OwnerModel, NameOwnerUniqueModel, NameOwnerModel
 
 
-class Author(OwnerModel, NameModel):
+class Author(NameOwnerUniqueModel):
     pass
 
 
-class Genre(OwnerModel, NameModel):
+class Genre(NameOwnerUniqueModel):
     pass
 
 
-class Category(OwnerModel, NameModel):
+class Category(NameOwnerUniqueModel):
     pass
 
 
@@ -31,11 +31,8 @@ class Book(OwnerModel):
         ]
 
 
-class Source(OwnerModel, NameModel):
-    class Meta:
-        unique_together = [
-            ['owner', 'name']
-        ]
+class Source(NameOwnerModel):
+    pass
 
 
 class Journal(OwnerModel):
