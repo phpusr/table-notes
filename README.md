@@ -3,7 +3,7 @@ Tabular Notes
 
 Simple multi user application written in Django for keeping tabular notes.
 
-The application consists of several modules: tv_series, ...
+The application consists of several modules: tv_series, books.
 
 In each module you can add, edit, delete, sort and filter records.
 
@@ -12,7 +12,7 @@ Modules
 
 ### tv_series
 
-Module for saving information about watched TV series.
+Module for saving information about watched TV series
 
 __Viewed TV series journal__
 
@@ -32,6 +32,33 @@ __View and edit record of journal__
 - Last watched date
 - Your rating
 - Comment
+
+### books
+
+Module for saving information about read books
+
+__Viewed read books journal__
+
+<img src="https://i.imgur.com/cfNVvY4.png" width="1000px" /></br>
+
+__View and edit record of journal__
+
+<img src="https://i.imgur.com/xXAzw8M.png" width="500px" />
+
+#### Data fields
+
+- Title
+- Authors
+- Genre
+- Category
+- Source (How did you find out?)
+- Add date
+- Start reading date
+- End reading date
+- Days spent
+- Pages number
+- Note
+
 
 How to run
 ----------
@@ -79,4 +106,3 @@ docker-compose up --build
 ```
 
 Open in browser `http://localhost:8001`
- 
