@@ -3,7 +3,16 @@ from django.contrib import admin
 from main.admin import OwnerAdmin, OwnerPublicAdmin
 from .models import Author, Book, Source, Journal, Genre, Category
 
-admin.site.register(Source, OwnerAdmin)
+
+@admin.register(Source)
+class SourceAdmin(OwnerAdmin):
+    list_display = ['name', 'journals']
+    readonly_fields = ['journals']
+
+    @staticmethod
+    def journals(obj):
+        return ', '.join([str(x) for x in obj.journal_set.all()])
+
 
 admin.site.register(Author, OwnerPublicAdmin)
 admin.site.register(Genre, OwnerPublicAdmin)
@@ -19,8 +28,8 @@ class BookAdmin(OwnerPublicAdmin):
 
 @admin.register(Journal)
 class JournalAdmin(OwnerAdmin):
-    list_display = ['book', 'authors', 'genre', 'category', 'source', 'add_date', 'start_date', 'end_date', 'days_number',
-                    'pages_number', 'note']
+    list_display = ['book', 'authors', 'genre', 'category', 'source', 'add_date', 'start_date', 'end_date',
+                    'days_number', 'pages_number', 'note']
     autocomplete_fields = ['book', 'source']
     readonly_fields = ['authors', 'genre', 'category']
     list_filter = ['book__category', 'book__genre']
