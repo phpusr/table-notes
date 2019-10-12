@@ -45,10 +45,11 @@ class JournalAdmin(OwnerAdmin):
     list_display = ['book', 'read', 'authors', 'genre', 'category', 'source', 'add_date', 'start_date', 'end_date',
                     'days_number', 'pages_number', 'note']
     autocomplete_fields = ['book', 'source']
-    readonly_fields = ['authors', 'genre', 'category']
+    readonly_fields = ['read', 'authors', 'genre', 'category']
     list_filter = [ReadBookFilter, 'book__category', 'book__genre']
     search_fields = ['book__title', 'book__authors__name', 'book__genre__name', 'book__category__name', 'source__name',
                      'note']
+    date_hierarchy = 'end_date'
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == 'book':
