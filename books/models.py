@@ -51,6 +51,10 @@ class Journal(OwnerModel):
 
         return (self.end_date - self.start_date).days
 
+    def read(self):
+        return self.end_date is not None
+    read.boolean = True
+
     def __str__(self):
         return str(self.book)
 

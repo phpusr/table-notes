@@ -26,13 +26,27 @@ class BookAdmin(OwnerPublicAdmin):
     autocomplete_fields = ['authors', 'genre', 'category']
 
 
+class ReadBookFilter(admin.SimpleListFilter):
+    title = 'read book'
+    parameter_name = 'read'
+
+    def lookups(self, request, model_admin):
+        return ('yes', 'Yes'), ('no', 'No')
+
+    def queryset(self, request, queryset):
+        if self.value() == 'yes':
+            return queryset.filter(end_date__isnull=True)
+        elif self.value() == 'now':
+            return queryset.filter(end_date__isnull=False)
+
+
 @admin.register(Journal)
 class JournalAdmin(OwnerAdmin):
-    list_display = ['book', 'authors', 'genre', 'category', 'source', 'add_date', 'start_date', 'end_date',
+    list_display = ['book', 'read', 'authors', 'genre', 'category', 'source', 'add_date', 'start_date', 'end_date',
                     'days_number', 'pages_number', 'note']
     autocomplete_fields = ['book', 'source']
     readonly_fields = ['authors', 'genre', 'category']
-    list_filter = ['book__category', 'book__genre']
+    list_filter = [ReadBookFilter, 'book__category', 'book__genre']
     search_fields = ['book__title', 'book__authors__name', 'book__genre__name', 'book__category__name', 'source__name',
                      'note']
 
