@@ -23,6 +23,7 @@ class JournalAdmin(OwnerAdmin):
                     'pages_number', 'note']
     autocomplete_fields = ['book', 'source']
     readonly_fields = ['authors', 'genre', 'category']
+    list_filter = ['book__category', 'book__genre']
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == 'book':
