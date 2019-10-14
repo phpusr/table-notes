@@ -1,0 +1,15 @@
+.results .nowrap {
+    white-space: normal;
+}
+
+.column-authors {
+    width: 150px;
+}
+
+.column-genre, .column-category, .column-source {
+    width: 100px;
+}
+
+.results td {
+    word-break: break-word;
+}

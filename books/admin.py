@@ -76,3 +76,4 @@ class JournalAdmin(OwnerAdmin):
 
     class Media:
         js = ['admin/js/list_filter_collapse.js']
+        css = {'all': ['admin/css/books/journal.css']}
