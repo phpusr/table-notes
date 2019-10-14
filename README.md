@@ -116,3 +116,9 @@ Changelist
     - Added multi user ability
 - v1.2 (12.10.2019)
     - Added "books" module
+- v1.3 (14.10.2019)
+    - Changed DB to PostgresQL
+    - Fixed ReadBookFilter
+    - Added ability to hide filter
+    - Changed width of columns for books journal
+ 
