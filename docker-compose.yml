@@ -2,10 +2,24 @@ version: '3'
 
 services:
   app:
-    container_name: tabular-notes
+    container_name: tabular-notes_app
     build: .
     restart: unless-stopped
     environment:
       - VIRTUAL_HOST=tabular-notes.local
     volumes:
       - ./data/db_prod.sqlite3:/app/data/db_prod.sqlite3
+    depends_on:
+      - db
+
+  db:
+    container_name: tabular-notes_db
+    image: postgres:12.0-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: tabular_notes
+      POSTGRES_PASSWORD: passw0rd
+    ports:
+      - 5433:5432
+    volumes:
+      - ./data/pgdata:/var/lib/postgresql/data

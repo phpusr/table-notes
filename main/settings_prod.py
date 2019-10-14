@@ -9,8 +9,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'data', 'db_prod.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'tabular_notes',
+        'USER': 'tabular_notes',
+        'PASSWORD': 'passw0rd',
+        'HOST': 'db',
+        'PORT': '5432'
     }
 }
 
