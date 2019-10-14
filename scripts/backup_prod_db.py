@@ -5,6 +5,7 @@ import os
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
+from pprint import pprint
 
 
 def backup_db_to_file():
@@ -45,15 +46,14 @@ class GoogleDrive:
 
         media = MediaFileUpload(file_path, resumable=True)
         result = self.service.files().create(body=file_metadata, media_body=media, fields='id').execute()
-        print(result)
+        print('File uploaded:', result)
 
-    def print_files(self):
+    def print_available_files(self):
         result = self.service.files().list(pageSize=10, fields="nextPageToken, files(id, name, mimeType)").execute()
-        print(result)
+        pprint(result)
 
 
 file_path = backup_db_to_file()
 
 g_drive = GoogleDrive()
 g_drive.upload_file(file_path)
-g_drive.print_files()
