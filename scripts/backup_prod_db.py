@@ -20,7 +20,7 @@ def backup_db_to_file():
     file_name = f'prod_db_{now}.{dump_format}'
     file_path = os.path.join(base_dir, file_name)
 
-    # os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'main.settings_prod')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'main.settings.backup')
     cmd = f'../manage.py dumpdata --indent=2 --format={dump_format} -o={file_path}'
     os.system(cmd)
 
