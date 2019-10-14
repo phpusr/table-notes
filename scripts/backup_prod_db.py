@@ -18,7 +18,7 @@ def backup_db_to_file():
     # json (default), xml, yaml (needs to install PyYAML)
     dump_format = 'json'
     file_name = f'prod_db_{now}.{dump_format}'
-    file_path = os.path.join(base_dir, file_name)
+    file_path = f'/tmp/{file_name}'
 
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'main.settings.backup')
     cmd = f'../manage.py dumpdata --indent=2 --format={dump_format} -o={file_path}'
@@ -57,3 +57,5 @@ file_path = backup_db_to_file()
 
 g_drive = GoogleDrive()
 g_drive.upload_file(file_path)
+
+os.remove(file_path)
