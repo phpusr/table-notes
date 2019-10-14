@@ -40,9 +40,9 @@ class ReadBookFilter(admin.SimpleListFilter):
 
     def queryset(self, request, queryset):
         if self.value() == 'yes':
-            return queryset.filter(end_date__isnull=True)
-        elif self.value() == 'now':
             return queryset.filter(end_date__isnull=False)
+        elif self.value() == 'no':
+            return queryset.filter(end_date__isnull=True)
 
 
 @admin.register(Journal)
