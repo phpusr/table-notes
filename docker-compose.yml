@@ -7,8 +7,6 @@ services:
     restart: unless-stopped
     environment:
       - VIRTUAL_HOST=tabular-notes.local
-    volumes:
-      - ./data/db_prod.sqlite3:/app/data/db_prod.sqlite3
     depends_on:
       - db
 
