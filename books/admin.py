@@ -73,3 +73,6 @@ class JournalAdmin(OwnerAdmin):
     @staticmethod
     def category(obj):
         return obj.book.category
+
+    class Media:
+        js = ['admin/js/list_filter_collapse.js']
