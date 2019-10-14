@@ -1,7 +1,7 @@
 FROM python:3.7
 
 ENV PYTHONUNBUFFERED 1
-ENV DJANGO_SETTINGS_MODULE main.settings_prod
+ENV DJANGO_SETTINGS_MODULE main.settings.prod
 
 COPY ./requirements.txt /code/requirements.txt
 RUN pip install --upgrade pip
