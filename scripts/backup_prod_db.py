@@ -21,7 +21,7 @@ def backup_db_to_file():
     file_path = f'/tmp/{file_name}'
 
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'main.settings.backup')
-    cmd = f'../manage.py dumpdata --indent=2 --format={dump_format} -o={file_path}'
+    cmd = f'{base_dir}/../manage.py dumpdata --indent=2 --format={dump_format} -o={file_path}'
     os.system(cmd)
 
     print(f'File saved to: {file_path}')
@@ -32,7 +32,8 @@ class GoogleDrive:
 
     def __init__(self):
         scopes = ['https://www.googleapis.com/auth/drive']
-        service_account_file = 'gdrive_account.json'
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        service_account_file = f'{base_dir}/gdrive_account.json'
         credentials = service_account.Credentials.from_service_account_file(service_account_file, scopes=scopes)
         self.service = build('drive', 'v3', credentials=credentials)
 
