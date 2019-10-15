@@ -1,9 +1,15 @@
 from django.contrib import admin
 
-from main.admin import OwnerAdmin
-from .models import Status, Journal
+from main.admin import OwnerAdmin, OwnerPublicAdmin
+from .models import Status, Journal, TVSeries
 
 admin.site.register(Status, OwnerAdmin)
+
+
+@admin.register(TVSeries)
+class TVSeriesAdmin(OwnerPublicAdmin):
+    list_display = ['local_name', 'original_name']
+    search_fields = ['local_name', 'original_name']
 
 
 class StatusListFilter(admin.SimpleListFilter):
@@ -32,7 +38,13 @@ class JournalAdmin(OwnerAdmin):
                     'last_watched_date', 'rating', 'comment', 'owner']
     list_filter = [StatusListFilter, 'rating']
     search_fields = ['tv_series__local_name', 'tv_series__original_name', 'comment']
-    autocomplete_fields = ['status']
+    autocomplete_fields = ['tv_series', 'status']
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == 'tv_series':
+            return admin.ModelAdmin.formfield_for_foreignkey(self, db_field, request, **kwargs)
+
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
     @staticmethod
     def original_name(obj):
