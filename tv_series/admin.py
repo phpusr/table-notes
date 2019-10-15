@@ -44,12 +44,10 @@ class JournalAdmin(JournalAdminAbstract):
 
     def local_name(self, obj):
         return obj.tv_series.local_name
-
     local_name.admin_order_field = 'tv_series__local_name'
 
     def original_name(self, obj):
         return obj.tv_series.original_name
-
     original_name.admin_order_field = 'tv_series__original_name'
 
 

@@ -60,7 +60,7 @@ class JournalAdmin(JournalAdminAbstract):
 
     def book_title(self, obj):
         return obj.book.title
-
+    book_title.short_description = 'title'
     book_title.admin_order_field = 'book__title'
 
     @staticmethod
