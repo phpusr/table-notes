@@ -12,7 +12,7 @@ class TVSeries(OwnerModel):
     original_name = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.local_name
+        return f'{self.local_name} ({self.original_name})'
 
     class Meta:
         unique_together = [

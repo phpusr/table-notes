@@ -48,7 +48,7 @@ class ReadBookFilter(admin.SimpleListFilter):
 
 @admin.register(Journal)
 class JournalAdmin(JournalAdminAbstract):
-    list_display = ['book', 'read', 'authors', 'genre', 'category', 'source', 'add_date', 'start_date', 'end_date',
+    list_display = ['book_title', 'read', 'authors', 'genre', 'category', 'source', 'add_date', 'start_date', 'end_date',
                     'days_spent', 'pages_number', 'note']
     autocomplete_fields = ['book', 'source']
     readonly_fields = ['read', 'authors', 'genre', 'category', 'days_spent']
@@ -57,6 +57,11 @@ class JournalAdmin(JournalAdminAbstract):
                      'note']
     date_hierarchy = 'end_date'
     public_fields = ['book']
+
+    def book_title(self, obj):
+        return obj.book.title
+
+    book_title.admin_order_field = 'book__title'
 
     @staticmethod
     def authors(obj):
