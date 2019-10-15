@@ -121,4 +121,9 @@ Changelist
     - Fixed ReadBookFilter
     - Added ability to hide filter
     - Changed width of columns for books journal
+- v1.4 (15.10.2019)
+    - Removed `backup_prod_db.py` (moved to my scripts)
+    - Moved TV series to separate table
+    - Added sort ordering for all objects
+    - Added sorting by name fields for journals
  
