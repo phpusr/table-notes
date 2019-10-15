@@ -126,4 +126,5 @@ Changelist
     - Moved TV series to separate table
     - Added sort ordering for all objects
     - Added sorting by name fields for journals
+    - Changed prod DB version
  
