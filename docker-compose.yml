@@ -12,7 +12,7 @@ services:
 
   db:
     container_name: tabular-notes_db
-    image: postgres:12.0-alpine
+    image: postgres:11.5-alpine
     restart: unless-stopped
     environment:
       POSTGRES_USER: tabular_notes
