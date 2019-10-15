@@ -28,9 +28,15 @@ class StatusListFilter(admin.SimpleListFilter):
 
 @admin.register(Journal)
 class JournalAdmin(OwnerAdmin):
-    list_display = ['local_name', 'original_name', 'status', 'last_watched_season', 'last_watched_series',
+    list_display = ['tv_series', 'original_name', 'status', 'last_watched_season', 'last_watched_series',
                     'last_watched_date', 'rating', 'comment', 'owner']
     list_filter = [StatusListFilter, 'rating']
-    search_fields = ['local_name', 'original_name', 'comment']
+    search_fields = ['tv_series__local_name', 'tv_series__original_name', 'comment']
     autocomplete_fields = ['status']
+
+    @staticmethod
+    def original_name(obj):
+        return obj.tv_series.original_name
+
+
 
