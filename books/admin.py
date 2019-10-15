@@ -28,6 +28,7 @@ admin.site.register(Category, OwnerPublicAdmin)
 class BookAdmin(OwnerPublicAdmin):
     list_display = ['title']
     search_fields = ['title']
+    ordering = ['title']
     autocomplete_fields = ['authors', 'genre', 'category']
 
 

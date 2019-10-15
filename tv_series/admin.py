@@ -10,6 +10,7 @@ admin.site.register(Status, OwnerAdmin)
 class TVSeriesAdmin(OwnerPublicAdmin):
     list_display = ['local_name', 'original_name']
     search_fields = ['local_name', 'original_name']
+    ordering = ['local_name']
 
 
 class StatusListFilter(admin.SimpleListFilter):

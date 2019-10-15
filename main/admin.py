@@ -45,6 +45,7 @@ class OwnerListFilter(admin.SimpleListFilter):
 class OwnerAdmin(admin.ModelAdmin):
     list_display = ['name']
     search_fields = ['name']
+    ordering = ['name']
     readonly_fields = []
     list_filter = []
 
@@ -126,6 +127,7 @@ class OwnerPublicAdmin(OwnerAdmin):
 
 
 class JournalAdminAbstract(OwnerAdmin):
+    ordering = ['-id']
     public_fields = []
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
