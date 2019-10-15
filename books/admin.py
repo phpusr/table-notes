@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import reverse
 from django.utils.html import format_html
 
-from main.admin import OwnerAdmin, OwnerPublicAdmin
+from main.admin import OwnerAdmin, OwnerPublicAdmin, JournalAdminAbstract
 from .models import Author, Book, Source, Journal, Genre, Category
 
 
@@ -46,7 +46,7 @@ class ReadBookFilter(admin.SimpleListFilter):
 
 
 @admin.register(Journal)
-class JournalAdmin(OwnerAdmin):
+class JournalAdmin(JournalAdminAbstract):
     list_display = ['book', 'read', 'authors', 'genre', 'category', 'source', 'add_date', 'start_date', 'end_date',
                     'days_spent', 'pages_number', 'note']
     autocomplete_fields = ['book', 'source']
@@ -55,12 +55,7 @@ class JournalAdmin(OwnerAdmin):
     search_fields = ['book__title', 'book__authors__name', 'book__genre__name', 'book__category__name', 'source__name',
                      'note']
     date_hierarchy = 'end_date'
-
-    def formfield_for_foreignkey(self, db_field, request, **kwargs):
-        if db_field.name == 'book':
-            return admin.ModelAdmin.formfield_for_foreignkey(self, db_field, request, **kwargs)
-
-        return super().formfield_for_foreignkey(db_field, request, **kwargs)
+    public_fields = ['book']
 
     @staticmethod
     def authors(obj):

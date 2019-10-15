@@ -123,3 +123,13 @@ class OwnerPublicAdmin(OwnerAdmin):
             self.list_display.append('owner')
 
         return self.list_display
+
+
+class JournalAdminAbstract(OwnerAdmin):
+    public_fields = []
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name in self.public_fields:
+            return admin.ModelAdmin.formfield_for_foreignkey(self, db_field, request, **kwargs)
+
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
