@@ -9,7 +9,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'tabular_notes',
         'USER': 'tabular_notes',
         'PASSWORD': 'passw0rd',
