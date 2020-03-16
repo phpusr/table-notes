@@ -48,11 +48,11 @@ class ReadBookFilter(admin.SimpleListFilter):
 
 @admin.register(Journal)
 class JournalAdmin(JournalAdminAbstract):
-    list_display = ['book_title', 'read', 'authors', 'genre', 'category', 'source', 'add_date', 'start_date', 'end_date',
+    list_display = ['book_title', 'read', 'authors', 'rating', 'genre', 'category', 'source', 'add_date', 'start_date', 'end_date',
                     'days_spent', 'pages_number', 'note']
     autocomplete_fields = ['book', 'source']
     readonly_fields = ['read', 'authors', 'genre', 'category', 'days_spent']
-    list_filter = [ReadBookFilter, 'book__category', 'book__genre']
+    list_filter = [ReadBookFilter, 'rating', 'book__category', 'book__genre']
     search_fields = ['book__title', 'book__authors__name', 'book__genre__name', 'book__category__name', 'source__name',
                      'note']
     date_hierarchy = 'end_date'
