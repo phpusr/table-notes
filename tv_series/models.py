@@ -20,13 +20,16 @@ class TVSeries(OwnerModel):
         ]
 
 
+TVSeriesRating = models.IntegerChoices('TV Series rating', '1 2 3 4 5')
+
+
 class Journal(OwnerModel):
     tv_series = models.ForeignKey(TVSeries, on_delete=models.PROTECT, verbose_name='TV series')
     status = models.ForeignKey(Status, on_delete=models.PROTECT, null=True, blank=True)
     last_watched_season = models.PositiveIntegerField(null=True, blank=True)
     last_watched_series = models.PositiveIntegerField(null=True, blank=True)
     last_watched_date = models.DateField(null=True, blank=True)
-    rating = models.PositiveIntegerField(null=True, blank=True)
+    rating = models.PositiveIntegerField(choices=TVSeriesRating.choices, null=True, blank=True)
     comment = models.TextField(blank=True)
 
     def __str__(self):
