@@ -35,9 +35,6 @@ class Source(NameOwnerModel):
     pass
 
 
-BookRating = models.IntegerChoices('Book rating', '1 2 3 4 5')
-
-
 class Journal(OwnerModel):
     book = models.ForeignKey(Book, on_delete=models.PROTECT)
     source = models.ForeignKey(Source, on_delete=models.PROTECT, null=True, blank=True)
@@ -45,7 +42,10 @@ class Journal(OwnerModel):
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
     pages_number = models.PositiveIntegerField(null=True, blank=True)
-    rating = models.PositiveIntegerField(choices=BookRating.choices, null=True, blank=True)
+
+    Rating = models.IntegerChoices('Book rating', '1 2 3 4 5')
+    rating = models.PositiveIntegerField(choices=Rating.choices, null=True, blank=True)
+
     note = models.TextField(blank=True)
 
     @property
