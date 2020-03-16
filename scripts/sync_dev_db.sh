@@ -5,7 +5,7 @@ BACKUP_FILE=$PWD/../data/backup_db.json
 echo "Dump creating"
 export DJANGO_SETTINGS_MODULE=main.settings.backup
 cd ..
-pipenv run ./manage.py dumpdata --indent=2 -o "$BACKUP_FILE"
+pipenv run ./manage.py dumpdata --indent=2 -o "$BACKUP_FILE" #--traceback
 
 echo "Cleaning data"
 export DJANGO_SETTINGS_MODULE=main.settings.dev
