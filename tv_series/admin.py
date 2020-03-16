@@ -41,6 +41,7 @@ class JournalAdmin(JournalAdminAbstract):
     search_fields = ['tv_series__local_name', 'tv_series__original_name', 'comment']
     autocomplete_fields = ['tv_series', 'status']
     public_fields = ['tv_series']
+    ordering = ['-last_watched_date']
 
     def local_name(self, obj):
         return obj.tv_series.local_name
@@ -49,6 +50,3 @@ class JournalAdmin(JournalAdminAbstract):
     def original_name(self, obj):
         return obj.tv_series.original_name
     original_name.admin_order_field = 'tv_series__original_name'
-
-
-
