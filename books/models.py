@@ -38,6 +38,15 @@ class Source(NameOwnerModel):
 class Journal(OwnerModel):
     book = models.ForeignKey(Book, on_delete=models.PROTECT)
     source = models.ForeignKey(Source, on_delete=models.PROTECT, null=True, blank=True)
+
+    class Status(models.IntegerChoices):
+        DIDNT_READ = 1
+        READING = 2
+        READ = 3
+        STOPPED = 4
+
+    status = models.PositiveIntegerField(choices=Status.choices, default=Status.DIDNT_READ)
+
     add_date = models.DateField(default=timezone.now, null=True)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
@@ -54,10 +63,6 @@ class Journal(OwnerModel):
             return '-'
 
         return (self.end_date - self.start_date).days
-
-    def read(self):
-        return self.end_date is not None
-    read.boolean = True
 
     def __str__(self):
         return str(self.book)
