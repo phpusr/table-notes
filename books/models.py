@@ -59,10 +59,20 @@ class Journal(OwnerModel):
 
     @property
     def days_spent(self):
-        if self.end_date is None or self.start_date is None:
-            return '-'
+        empty = '-'
+        if self.status == Journal.Status.DIDNT_READ or self.status == Journal.Status.STOPPED:
+            return empty
 
-        return (self.end_date - self.start_date).days
+        start_date = self.start_date
+        end_date = self.end_date
+
+        if self.status == Journal.Status.READING:
+            end_date = timezone.now().date()
+
+        if end_date is None or start_date is None:
+            return empty
+
+        return (end_date - start_date).days
 
     def __str__(self):
         return str(self.book)

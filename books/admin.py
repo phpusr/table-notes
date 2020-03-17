@@ -37,8 +37,8 @@ class BookAdmin(OwnerPublicAdmin):
 @admin.register(Journal)
 class JournalAdmin(JournalAdminAbstract):
     form = JournalAdminForm
-    list_display = ['book_title', 'status_icon', 'authors', 'rating', 'genre', 'category', 'source', 'add_date', 'start_date', 'end_date',
-                    'days_spent', 'pages_number', 'note']
+    list_display = ['book_title', 'status_icon', 'authors', 'rating', 'genre', 'category', 'source', 'add_date',
+                    'start_date', 'end_date', 'days_spent', 'pages_number', 'note']
     autocomplete_fields = ['book', 'source']
     readonly_fields = ['authors', 'genre', 'category', 'days_spent']
     list_filter = ['status', 'rating', 'book__category', 'book__genre']
