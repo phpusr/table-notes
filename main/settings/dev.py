@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
+import dj_database_url
+
 VERSION = '1.4'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -81,15 +83,9 @@ WSGI_APPLICATION = 'main.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+DATABASE_URL = os.getenv('DATABASE_URL', 'postgres://localhost:5432/tabular_notes')
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'tabular_notes',
-        'USER': 'phpusr',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '5432'
-    }
+    'default': dj_database_url.parse(DATABASE_URL)
 }
 
 
