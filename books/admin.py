@@ -1,8 +1,10 @@
 from django.contrib import admin
 from django.urls import reverse
 from django.utils.html import format_html
+from django.utils.safestring import mark_safe
 
 from main.admin import OwnerAdmin, OwnerPublicAdmin, JournalAdminAbstract
+from .forms import JournalAdminForm
 from .models import Author, Book, Source, Journal, Genre, Category
 
 
@@ -34,7 +36,8 @@ class BookAdmin(OwnerPublicAdmin):
 
 @admin.register(Journal)
 class JournalAdmin(JournalAdminAbstract):
-    list_display = ['book_title', 'status', 'authors', 'rating', 'genre', 'category', 'source', 'add_date', 'start_date', 'end_date',
+    form = JournalAdminForm
+    list_display = ['book_title', 'status_icon', 'authors', 'rating', 'genre', 'category', 'source', 'add_date', 'start_date', 'end_date',
                     'days_spent', 'pages_number', 'note']
     autocomplete_fields = ['book', 'source']
     readonly_fields = ['authors', 'genre', 'category', 'days_spent']
@@ -48,6 +51,10 @@ class JournalAdmin(JournalAdminAbstract):
         return obj.book.title
     book_title.short_description = 'title'
     book_title.admin_order_field = 'book__title'
+
+    def status_icon(self, obj):
+        icon = self.form().fields['status'].widget.icon(obj.status)
+        return mark_safe(icon)
 
     @staticmethod
     def authors(obj):
