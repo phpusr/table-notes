@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 
-from main.admin import OwnerAdmin, OwnerPublicAdmin, JournalAdminAbstract
+from app.admin import OwnerAdmin, OwnerPublicAdmin, JournalAdminAbstract
 from .forms import JournalAdminForm
 from .models import Author, Book, Source, Journal, Genre, Category
 

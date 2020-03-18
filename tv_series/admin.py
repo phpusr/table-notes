@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.contrib import admin
 
-from main.admin import OwnerAdmin, OwnerPublicAdmin, JournalAdminAbstract
+from app.admin import OwnerAdmin, OwnerPublicAdmin, JournalAdminAbstract
 from .models import Status, Journal, TVSeries
 
 admin.site.register(Status, OwnerAdmin)

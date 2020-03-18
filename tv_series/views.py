@@ -1,11 +1,12 @@
 import csv
-import pymysql
 from contextlib import closing
+
+import pymysql
 from django.db import IntegrityError
 from django.http import HttpResponse
 from pymysql.cursors import DictCursor
 
-from main.util import parse_date
+from app.util import parse_date
 from tv_series.models import Journal, Status
 
 

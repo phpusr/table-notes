@@ -2,7 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
-from main.models import OwnerModel, NameOwnerUniqueModel, NameOwnerModel
+from app.models import OwnerModel, NameOwnerUniqueModel, NameOwnerModel
 
 
 class Author(NameOwnerUniqueModel):

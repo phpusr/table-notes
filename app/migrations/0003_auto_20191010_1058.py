@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main', '0002_user_friends'),
+        ('app', '0002_user_friends'),
     ]
 
     operations = [

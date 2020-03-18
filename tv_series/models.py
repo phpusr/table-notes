@@ -1,6 +1,6 @@
 from django.db import models
 
-from main.models import OwnerModel, NameOwnerModel
+from app.models import OwnerModel, NameOwnerModel
 
 
 class Status(NameOwnerModel):
