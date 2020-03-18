@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
@@ -59,7 +60,7 @@ class Journal(OwnerModel):
 
     @property
     def days_spent(self):
-        empty = '-'
+        empty = settings.EMPTY_VALUE_DISPLAY
         if self.status == Journal.Status.DIDNT_READ or self.status == Journal.Status.STOPPED:
             return empty
 

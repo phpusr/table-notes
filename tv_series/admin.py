@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib import admin
 
 from main.admin import OwnerAdmin, OwnerPublicAdmin, JournalAdminAbstract
@@ -35,6 +36,7 @@ class StatusListFilter(admin.SimpleListFilter):
 
 @admin.register(Journal)
 class JournalAdmin(JournalAdminAbstract):
+    empty_value_display = settings.EMPTY_VALUE_DISPLAY
     list_display = ['local_name', 'original_name', 'status', 'last_watched_season', 'last_watched_series',
                     'last_watched_date', 'rating', 'comment', 'owner']
     list_filter = [StatusListFilter, 'rating']

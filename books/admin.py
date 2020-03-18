@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib import admin
 from django.urls import reverse
 from django.utils.html import format_html
@@ -37,8 +38,9 @@ class BookAdmin(OwnerPublicAdmin):
 @admin.register(Journal)
 class JournalAdmin(JournalAdminAbstract):
     form = JournalAdminForm
-    list_display = ['book_title', 'status_icon', 'authors', 'rating', 'genre', 'category', 'source', 'add_date',
-                    'start_date', 'end_date', 'days_spent', 'pages_number', 'note']
+    empty_value_display = settings.EMPTY_VALUE_DISPLAY
+    list_display = ['book_title', 'status_icon', 'authors', 'rating', 'source',
+                    'start_date', 'end_date', 'days_spent', 'note']
     autocomplete_fields = ['book', 'source']
     readonly_fields = ['authors', 'genre', 'category', 'days_spent']
     list_filter = ['status', 'rating', 'book__category', 'book__genre']
