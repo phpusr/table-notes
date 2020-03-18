@@ -3,7 +3,13 @@
 BACKUP_FILE=$PWD/../data/backup_db.sql
 
 echo ">> Dumping"
-pg_dump -f "$BACKUP_FILE" -h 172.23.0.3 -d tabular_notes -U tabular_notes --create --clean --if-exists --no-owner --no-privileges
+HOST="172.23.0.3"
+DB="tabular_notes"
+USER="tabular_notes"
+pg_dump -f "$BACKUP_FILE" -h $HOST -d $DB -U $USER --no-password --clean --if-exists --no-owner --no-privileges
 
 echo ">> Restoring"
-psql -d tabular_notes -f "$BACKUP_FILE"
+HOST="ec2-54-75-246-118.eu-west-1.compute.amazonaws.com"
+DB="tabular_notes"
+USER="tabular_notes"
+psql -h $HOST -U $USER -d $DB -f "$BACKUP_FILE"
