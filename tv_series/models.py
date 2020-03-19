@@ -44,4 +44,5 @@ class Journal(OwnerModel):
         unique_together = [
             ['owner', 'tv_series']
         ]
+        verbose_name = 'TV series entry'
 

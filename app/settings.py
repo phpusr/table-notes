@@ -42,8 +42,8 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     # Local
     'app',
-    'tv_series',
-    'books',
+    'tv_series.apps.TvSeriesConfig',
+    'books.apps.BooksConfig',
     
     # Dependencies
     'django.contrib.admin',
