@@ -16,6 +16,8 @@ import dj_database_url
 
 # Project settings
 # ---------------------------------------
+NAME = 'Tabular Notes'
+
 VERSION = '1.5'
 
 EMPTY_VALUE_DISPLAY = ''

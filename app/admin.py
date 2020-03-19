@@ -5,7 +5,10 @@ from django.utils.safestring import mark_safe
 
 from .models import User
 
-admin.site.site_header = f"Tabular Notes (v{settings.VERSION}-{'dev' if settings.DEBUG else 'prod'})"
+admin.site.site_header = f"{settings.NAME} (v{settings.VERSION}{'-dev' if settings.DEBUG else ''})"
+admin.site.site_title = settings.NAME
+admin.site.index_title = 'Journals'
+admin.site.empty_value_display = settings.EMPTY_VALUE_DISPLAY
 
 
 @admin.register(User)

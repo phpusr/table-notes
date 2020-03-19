@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.contrib import admin
 from django.urls import reverse
 from django.utils.html import format_html
@@ -37,7 +36,6 @@ class BookAdmin(OwnerPublicAdmin):
 @admin.register(Journal)
 class JournalAdmin(JournalAdminAbstract):
     form = JournalAdminForm
-    empty_value_display = settings.EMPTY_VALUE_DISPLAY
     list_display = ['status_icon', 'rating_icon', 'book_title', 'authors', 'source',
                     'start_date', 'end_date', 'days_spent', 'note']
     list_display_links = ['book_title']
