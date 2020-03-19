@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib import admin
 from django.contrib.auth import admin as auth_admin
+from django.utils.safestring import mark_safe
 
 from .models import User
 
@@ -129,6 +130,16 @@ class OwnerPublicAdmin(OwnerAdmin):
 class JournalAdminAbstract(OwnerAdmin):
     ordering = ['-id']
     public_fields = []
+
+    @staticmethod
+    def rating_icon(obj):
+        if not obj.rating:
+            return
+
+        icon = ''
+        for i in range(0, obj.rating):
+            icon += '<i class="fas fa-star fa-xs rating-star"></i>'
+        return mark_safe(icon)
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name in self.public_fields:

@@ -37,8 +37,9 @@ class StatusListFilter(admin.SimpleListFilter):
 @admin.register(Journal)
 class JournalAdmin(JournalAdminAbstract):
     empty_value_display = settings.EMPTY_VALUE_DISPLAY
-    list_display = ['local_name', 'original_name', 'status', 'last_watched_season', 'last_watched_series',
-                    'last_watched_date', 'rating', 'comment', 'owner']
+    list_display = ['rating_icon', 'local_name', 'original_name', 'status', 'last_watched_season', 'last_watched_series',
+                    'last_watched_date', 'comment', 'owner']
+    list_display_links = ['local_name']
     list_filter = [StatusListFilter, 'rating']
     search_fields = ['tv_series__local_name', 'tv_series__original_name', 'comment']
     autocomplete_fields = ['tv_series', 'status']

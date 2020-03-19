@@ -39,8 +39,9 @@ class BookAdmin(OwnerPublicAdmin):
 class JournalAdmin(JournalAdminAbstract):
     form = JournalAdminForm
     empty_value_display = settings.EMPTY_VALUE_DISPLAY
-    list_display = ['book_title', 'status_icon', 'authors', 'rating', 'source',
+    list_display = ['rating_icon', 'book_title', 'status_icon', 'authors', 'source',
                     'start_date', 'end_date', 'days_spent', 'note']
+    list_display_links = ['book_title']
     autocomplete_fields = ['book', 'source']
     readonly_fields = ['authors', 'genre', 'category', 'days_spent']
     list_filter = ['status', 'rating', 'book__category', 'book__genre']
