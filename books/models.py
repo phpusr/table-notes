@@ -43,7 +43,7 @@ class Journal(OwnerModel):
     class Status(models.IntegerChoices):
         DIDNT_READ = 1
         READING = 2
-        READ = 3
+        DONE = 3
         STOPPED = 4
 
     status = models.PositiveIntegerField(choices=Status.choices, default=Status.DIDNT_READ)
