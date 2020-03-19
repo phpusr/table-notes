@@ -1,2 +1,16 @@
+/.idea/
+/*.iml
+/.git/
+__pycache__/
+
 /data/
+/scripts/
 /static/
+
+/.dockerignore
+/.gitignore
+/docker-compose.yml
+/Dockerfile
+/Pipfile
+/Procfile
+/Makefile

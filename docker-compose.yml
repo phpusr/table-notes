@@ -6,7 +6,8 @@ services:
     build: .
     restart: unless-stopped
     environment:
-      - VIRTUAL_HOST=tabular-notes.local
+      - DEBUG=False
+      - DATABASE_URL=postgres://tabular_notes:passw0rd@db:5432/tabular_notes
     depends_on:
       - db
 
