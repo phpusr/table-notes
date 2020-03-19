@@ -1,7 +1,9 @@
 from django.conf import settings
 from django.contrib import admin
+from django.utils.safestring import mark_safe
 
 from app.admin import OwnerPublicAdmin, JournalAdminAbstract
+from .forms import JournalAdminForm
 from .models import Journal, TVSeries
 
 
@@ -14,8 +16,9 @@ class TVSeriesAdmin(OwnerPublicAdmin):
 
 @admin.register(Journal)
 class JournalAdmin(JournalAdminAbstract):
+    form = JournalAdminForm
     empty_value_display = settings.EMPTY_VALUE_DISPLAY
-    list_display = ['rating_icon', 'local_name', 'original_name', 'status', 'last_watched_season', 'last_watched_series',
+    list_display = ['status_icon', 'rating_icon', 'local_name', 'original_name', 'status', 'last_watched_season', 'last_watched_series',
                     'last_watched_date', 'comment', 'owner']
     list_display_links = ['local_name']
     list_filter = ['status', 'rating']
@@ -23,6 +26,12 @@ class JournalAdmin(JournalAdminAbstract):
     autocomplete_fields = ['tv_series']
     public_fields = ['tv_series']
     ordering = ['-last_watched_date']
+
+    def status_icon(self, obj):
+        icon = self.form().fields['status'].widget.icon(obj.status)
+        return mark_safe(icon)
+    status_icon.short_description = 's'
+    status_icon.admin_order_field = 'status'
 
     def local_name(self, obj):
         return obj.tv_series.local_name
