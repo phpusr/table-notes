@@ -14,6 +14,8 @@ class TVSeries(OwnerModel):
         unique_together = [
             ['local_name', 'original_name']
         ]
+        verbose_name = 'TV series'
+        verbose_name_plural = 'TV series'
 
 
 class Journal(OwnerModel):
@@ -45,4 +47,5 @@ class Journal(OwnerModel):
             ['owner', 'tv_series']
         ]
         verbose_name = 'TV series entry'
+        verbose_name_plural = 'TV series entries'
 

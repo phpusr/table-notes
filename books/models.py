@@ -14,7 +14,8 @@ class Genre(NameOwnerUniqueModel):
 
 
 class Category(NameOwnerUniqueModel):
-    pass
+    class Meta:
+        verbose_name_plural = 'categories'
 
 
 class Book(OwnerModel):
@@ -82,4 +83,5 @@ class Journal(OwnerModel):
         unique_together = [
             ['owner', 'book']
         ]
-        verbose_name = 'Book entry'
+        verbose_name = 'book entry'
+        verbose_name_plural = 'book entries'
