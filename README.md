@@ -78,13 +78,13 @@ pipenv install --dev
 Create DB (once)
 
 ```bash
-piprnv run ./manage.py migrate
+pipenv run ./manage.py migrate
 ```
 
 Run
 
 ```bash
-piprnv run ./manage.py runserver [port]
+pipenv run ./manage.py runserver [port]
 ```
 
 ### Production mode
