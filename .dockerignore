@@ -11,6 +11,6 @@ __pycache__/
 /.gitignore
 /docker-compose.yml
 /Dockerfile
-/Pipfile
+/Pipfile.lock
 /Procfile
 /Makefile

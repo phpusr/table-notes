@@ -5,10 +5,8 @@ ENV DEBUG False
 
 WORKDIR /app/
 
-COPY Pipfile.lock /app/Pipfile.lock
-RUN pip install --upgrade pipenv \
-    && pipenv install --ignore-pipfile \
-    && pipenv install gunicorn
+COPY Pipfile /app/Pipfile
+RUN pip install --upgrade pipenv && pipenv install
 
 COPY . /app/
 RUN pipenv run ./manage.py collectstatic
