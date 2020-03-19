@@ -18,7 +18,7 @@ __Viewed TV series journal__
 
 <img src="https://i.imgur.com/9G6VE61.png" width="1000px"></br>
 
-__View and edit record of journal__
+__View and edit entry of journal__
 
 <img src="https://i.imgur.com/NGOCZHG.png" width="500px">
 
@@ -41,7 +41,7 @@ __Viewed read books journal__
 
 <img src="https://i.imgur.com/Rs8tTja.png" width="1000px"></br>
 
-__View and edit record of journal__
+__View and edit entry of journal__
 
 <img src="https://i.imgur.com/Zdm2kZy.png" width="500px">
 
@@ -77,7 +77,7 @@ pipenv install --dev
 
 Create DB (once)
 
-```
+```bash
 piprnv run ./manage.py migrate
 ```
 
@@ -108,21 +108,38 @@ Open in browser `http://localhost:8001`
 Changelist
 ----------
 
-- v1.0 (07.07.2019)
-    - Added "tv_series" module
-- v1.1 (10.10.2019)
-    - Added multi user ability
-- v1.2 (12.10.2019)
-    - Added "books" module
-- v1.3 (14.10.2019)
-    - Changed DB to PostgresQL
-    - Fixed ReadBookFilter
-    - Added ability to hide filter
-    - Changed width of columns for books journal
-- v1.4 (15.10.2019)
-    - Removed `backup_prod_db.py` (moved to my scripts)
-    - Moved TV series to separate table
-    - Added sort ordering for all objects
-    - Added sorting by name fields for journals
-    - Changed prod DB version
+**v1.5 (19.03.2020)**
+
+- Added book rating
+- Added book reading status
+- Added status icons
+- Added rating icons
+- Updated Django to 3.0.4 and dependencies
+
+**v1.4 (15.10.2019)**
+
+- Removed `backup_prod_db.py` (moved to my scripts)
+- Moved TV series to separate table
+- Added sort ordering for all objects
+- Added sorting by name fields for journals
+- Changed prod DB version
+
+**v1.3 (14.10.2019)**
+
+- Changed DB to PostgresQL
+- Fixed ReadBookFilter
+- Added ability to hide filter
+- Changed width of columns for books journal
+
+**v1.2 (12.10.2019)**
+
+- Added "books" module
+
+**v1.1 (10.10.2019)**
+
+- Added multi user ability
+
+**v1.0 (07.07.2019)**
+
+- Added "tv_series" module
  
