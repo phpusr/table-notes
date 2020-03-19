@@ -1,4 +1,4 @@
 .rating-star {
-    color: #f5dd5d;;
-    text-shadow: 1px 1px #9c9e77;
+    color: #f5dd5d;
+    -webkit-text-stroke: thin #e8f164;
 }
