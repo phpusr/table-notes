@@ -131,6 +131,12 @@ class JournalAdminAbstract(OwnerAdmin):
     ordering = ['-id']
     public_fields = []
 
+    def status_icon(self, obj):
+        icon = self.form().fields['status'].widget.icon(obj.status)
+        return mark_safe(icon)
+    status_icon.short_description = 's'
+    status_icon.admin_order_field = 'status'
+
     def rating_icon(self, obj):
         if not obj.rating:
             return

@@ -1,6 +1,5 @@
 from django.conf import settings
 from django.contrib import admin
-from django.utils.safestring import mark_safe
 
 from app.admin import OwnerPublicAdmin, JournalAdminAbstract
 from .forms import JournalAdminForm
@@ -26,12 +25,6 @@ class JournalAdmin(JournalAdminAbstract):
     autocomplete_fields = ['tv_series']
     public_fields = ['tv_series']
     ordering = ['-last_watched_date']
-
-    def status_icon(self, obj):
-        icon = self.form().fields['status'].widget.icon(obj.status)
-        return mark_safe(icon)
-    status_icon.short_description = 's'
-    status_icon.admin_order_field = 'status'
 
     def local_name(self, obj):
         return obj.tv_series.local_name

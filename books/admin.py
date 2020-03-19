@@ -2,7 +2,6 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import reverse
 from django.utils.html import format_html
-from django.utils.safestring import mark_safe
 
 from app.admin import OwnerAdmin, OwnerPublicAdmin, JournalAdminAbstract
 from .forms import JournalAdminForm
@@ -54,12 +53,6 @@ class JournalAdmin(JournalAdminAbstract):
         return obj.book.title
     book_title.short_description = 'title'
     book_title.admin_order_field = 'book__title'
-
-    def status_icon(self, obj):
-        icon = self.form().fields['status'].widget.icon(obj.status)
-        return mark_safe(icon)
-    status_icon.short_description = 's'
-    status_icon.admin_order_field = 'status'
 
     @staticmethod
     def authors(obj):
