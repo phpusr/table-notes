@@ -39,7 +39,7 @@ class BookAdmin(OwnerPublicAdmin):
 class JournalAdmin(JournalAdminAbstract):
     form = JournalAdminForm
     empty_value_display = settings.EMPTY_VALUE_DISPLAY
-    list_display = ['rating_icon', 'book_title', 'status_icon', 'authors', 'source',
+    list_display = ['status_icon', 'rating_icon', 'book_title', 'authors', 'source',
                     'start_date', 'end_date', 'days_spent', 'note']
     list_display_links = ['book_title']
     autocomplete_fields = ['book', 'source']
@@ -58,6 +58,8 @@ class JournalAdmin(JournalAdminAbstract):
     def status_icon(self, obj):
         icon = self.form().fields['status'].widget.icon(obj.status)
         return mark_safe(icon)
+    status_icon.short_description = 's'
+    status_icon.admin_order_field = 'status'
 
     @staticmethod
     def authors(obj):
