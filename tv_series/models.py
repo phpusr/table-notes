@@ -29,7 +29,7 @@ class Journal(OwnerModel):
     status = models.PositiveIntegerField(choices=Status.choices, default=Status.DIDNT_WATCH)
 
     last_watched_season = models.PositiveIntegerField(null=True, blank=True)
-    last_watched_series = models.PositiveIntegerField(null=True, blank=True)
+    last_watched_episode = models.PositiveIntegerField(null=True, blank=True)
     last_watched_date = models.DateField(null=True, blank=True)
 
     Rating = models.IntegerChoices('TV Series rating', '1 2 3 4 5')

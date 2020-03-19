@@ -17,8 +17,8 @@ class TVSeriesAdmin(OwnerPublicAdmin):
 class JournalAdmin(JournalAdminAbstract):
     form = JournalAdminForm
     empty_value_display = settings.EMPTY_VALUE_DISPLAY
-    list_display = ['status_icon', 'rating_icon', 'local_name', 'original_name', 'status', 'last_watched_season', 'last_watched_series',
-                    'last_watched_date', 'comment', 'owner']
+    list_display = ['status_icon', 'rating_icon', 'local_name', 'original_name', 'status', 'last_watched_season',
+                    'last_watched_episode', 'last_watched_date', 'comment', 'owner']
     list_display_links = ['local_name']
     list_filter = ['status', 'rating']
     search_fields = ['tv_series__local_name', 'tv_series__original_name', 'comment']

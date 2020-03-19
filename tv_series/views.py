@@ -58,11 +58,11 @@ def import_from_csv_file(request):
                 journal = Journal.objects.get(original_name=row['Оригинальное'].strip())
             except Journal.DoesNotExist:
                 journal = Journal(original_name=row['Оригинальное'].strip())
-            journal.status = Status.objects.get(name=row['Статус'].strip())
+            journal.status = row['Статус'].strip()
             journal.local_name = row['Название'].strip()
             journal.original_name = row['Оригинальное'].strip()
             journal.last_watched_season = row['Последний просм. сезон'].strip()
-            journal.last_watched_series = row['Послед. просм. серия'].strip()
+            journal.last_watched_episode = row['Послед. просм. серия'].strip()
             journal.last_watched_date = parse_date(row['Дата'])
             journal.rating = row['Оценка (макс. 5)'].strip()
             journal.comment = row['Комментарий'].strip()
