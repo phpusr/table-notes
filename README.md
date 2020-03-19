@@ -66,7 +66,7 @@ How to run
 
 ### Developed mode
 
-Install Python 3
+Install [Python 3](https://www.python.org/)
 
 Install dependencies
 
