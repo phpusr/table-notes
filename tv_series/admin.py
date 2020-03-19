@@ -1,10 +1,8 @@
 from django.conf import settings
 from django.contrib import admin
 
-from app.admin import OwnerAdmin, OwnerPublicAdmin, JournalAdminAbstract
-from .models import Status, Journal, TVSeries
-
-admin.site.register(Status, OwnerAdmin)
+from app.admin import OwnerPublicAdmin, JournalAdminAbstract
+from .models import Journal, TVSeries
 
 
 @admin.register(TVSeries)
@@ -14,35 +12,15 @@ class TVSeriesAdmin(OwnerPublicAdmin):
     ordering = ['local_name']
 
 
-class StatusListFilter(admin.SimpleListFilter):
-    title = 'status list filter'
-    parameter_name = 'status'
-
-    def lookups(self, request, model_admin):
-        def statuses_to_tuple(statuses):
-            return [(status.pk, status.name) for status in statuses]
-
-        current_user = request.user
-
-        if current_user.is_superuser:
-            return statuses_to_tuple(Status.objects.all())
-
-        return statuses_to_tuple(Status.objects.filter(owner=current_user))
-
-    def queryset(self, request, queryset):
-        if self.value() is not None:
-            return queryset.filter(status__pk=self.value())
-
-
 @admin.register(Journal)
 class JournalAdmin(JournalAdminAbstract):
     empty_value_display = settings.EMPTY_VALUE_DISPLAY
     list_display = ['rating_icon', 'local_name', 'original_name', 'status', 'last_watched_season', 'last_watched_series',
                     'last_watched_date', 'comment', 'owner']
     list_display_links = ['local_name']
-    list_filter = [StatusListFilter, 'rating']
+    list_filter = ['status', 'rating']
     search_fields = ['tv_series__local_name', 'tv_series__original_name', 'comment']
-    autocomplete_fields = ['tv_series', 'status']
+    autocomplete_fields = ['tv_series']
     public_fields = ['tv_series']
     ordering = ['-last_watched_date']
 

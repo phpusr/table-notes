@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from pymysql.cursors import DictCursor
 
 from app.util import parse_date
-from tv_series.models import Journal, Status
+from tv_series.models import Journal
 
 
 def import_from_db(request):
@@ -27,7 +27,7 @@ def import_from_db(request):
             cursor.execute(query)
             for row in cursor:
                 journal = Journal(
-                    status=Status.objects.get(pk=row['status_id']),
+                    status=row['status_id'],
                     local_name=row['name'],
                     original_name=row['original_name'],
                     last_watched_season=row['last_season'],

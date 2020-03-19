@@ -1,10 +1,6 @@
 from django.db import models
 
-from app.models import OwnerModel, NameOwnerModel
-
-
-class Status(NameOwnerModel):
-    pass
+from app.models import OwnerModel
 
 
 class TVSeries(OwnerModel):
@@ -22,7 +18,16 @@ class TVSeries(OwnerModel):
 
 class Journal(OwnerModel):
     tv_series = models.ForeignKey(TVSeries, on_delete=models.PROTECT, verbose_name='TV series')
-    status = models.ForeignKey(Status, on_delete=models.PROTECT, null=True, blank=True)
+
+    class Status(models.IntegerChoices):
+        WATCHING = 1
+        WAITING = 2
+        DONE = 3
+        STOPPED = 4
+        DIDNT_WATCH = 5
+
+    status = models.PositiveIntegerField(choices=Status.choices, default=Status.DIDNT_WATCH)
+
     last_watched_season = models.PositiveIntegerField(null=True, blank=True)
     last_watched_series = models.PositiveIntegerField(null=True, blank=True)
     last_watched_date = models.DateField(null=True, blank=True)
