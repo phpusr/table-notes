@@ -64,9 +64,11 @@ __View and edit entry of journal__
 How to run
 ----------
 
-### Developed mode
+### Development mode
 
 Install [Python 3](https://www.python.org/)
+
+Install [PosgreSQL](https://www.postgresql.org/)
 
 Install dependencies
 
@@ -78,6 +80,7 @@ pipenv install --dev
 Create DB (once)
 
 ```bash
+createdb -U postgres -O <username> tabular_notes
 pipenv run ./manage.py migrate
 ```
 

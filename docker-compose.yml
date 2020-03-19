@@ -2,17 +2,20 @@ version: '3'
 
 services:
   app:
-    container_name: tabular-notes_app
+    container_name: tabular-notes-app
     build: .
+    image: phpusr/tabular-notes
     restart: unless-stopped
     environment:
       - DEBUG=False
       - DATABASE_URL=postgres://tabular_notes:passw0rd@db:5432/tabular_notes
+    ports:
+      - 8001:8000
     depends_on:
       - db
 
   db:
-    container_name: tabular-notes_db
+    container_name: tabular-notes-db
     image: postgres:11.5-alpine
     restart: unless-stopped
     environment:
