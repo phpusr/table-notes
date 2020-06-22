@@ -68,7 +68,7 @@ How to run
 
 Install [Python 3](https://www.python.org/)
 
-Install [PosgreSQL](https://www.postgresql.org/)
+Install [PostgreSQL](https://www.postgresql.org/)
 
 Install dependencies
 
