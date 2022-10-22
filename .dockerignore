@@ -3,7 +3,7 @@
 /.git/
 __pycache__/
 
-/data/
+/data/pgdata
 /scripts/
 /static/
 
@@ -11,6 +11,6 @@ __pycache__/
 /.gitignore
 /docker-compose.yml
 /Dockerfile
-/Pipfile.lock
+/Pipfile
 /Procfile
 /Makefile

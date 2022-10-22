@@ -21,7 +21,7 @@ dumpdata:
 loaddata:
 	@echo "=== Restoring $(PROD_DB_URL) ==="
 	@pipenv run ./manage.py flush
-	@pipenv run ./manage.py loaddata $(BACKUP_JSON_FILE)
+	@pipenv run ./manage.py loaddata $(BACKUP_JSON_FILE) -e contenttypes.contenttype -e auth.permission -e admin
 
 ## pg_dump
 
