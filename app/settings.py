@@ -137,3 +137,11 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 AUTH_USER_MODEL = 'app.User'
+
+# Backup
+
+GDRIVE_FOLDER_ID = '1DyhiFFUgmpnwxunHT5yYbqJAw023kjeW'
+
+# Celery
+
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL', 'redis://localhost')

@@ -6,3 +6,5 @@ __pycache__/
 /static/
 
 /.env
+/app/gdrive_account.enc
+/app/gdrive_account.json
