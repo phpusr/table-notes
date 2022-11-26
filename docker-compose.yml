@@ -10,8 +10,11 @@ services:
       - DEBUG=False
       - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/app
       - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
+      - CELERY_BROKER_URL=redis://redis
     ports:
       - ${PORT:-8002}:8000
+    volumes:
+      - ./data/celerybeat-schedule:/app/data/celerybeat-schedule
     depends_on:
       - db
 
@@ -27,3 +30,8 @@ services:
       - 5433:5432
     volumes:
       - ./data/pgdata:/var/lib/postgresql/data
+  
+  redis:
+    container_name: tabular-notes-redis
+    image: redis:6.2
+    restart: unless-stopped

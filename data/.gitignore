@@ -1,3 +1,4 @@
 /pgdata/
+/init_data/
 /*.json
 /*.sql
