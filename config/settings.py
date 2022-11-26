@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'tv_series.apps.TvSeriesConfig',
     'books.apps.BooksConfig',
     'backup',
+    'django_celery_beat',
     
     # Dependencies
     'django.contrib.admin',
