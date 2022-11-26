@@ -4,7 +4,7 @@ from celery import Celery
 from celery.schedules import crontab
 from django.conf import settings
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
 app = Celery('app-tasks')
 app.config_from_object('django.conf:settings', namespace='CELERY')
 # It is here because setting it through settings.py doesn't work
