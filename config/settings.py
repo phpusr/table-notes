@@ -91,6 +91,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
 DATABASE_URL = os.getenv('DATABASE_URL', 'postgres://localhost:5432/tabular_notes')
 DATABASES = {
     'default': dj_database_url.parse(DATABASE_URL)
@@ -124,8 +126,6 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
-
-USE_L10N = True
 
 USE_TZ = True
 
