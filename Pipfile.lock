@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "56f35dd909a5f8e04f916713adb04a1fa080422cbd8ba8f514969352226af61a"
+            "sha256": "f35acaabe85c28d4c0f90eea960ad37a9499f27e2d9244d4bc7900af5e655235"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -120,7 +120,7 @@
         "django-backup": {
             "editable": true,
             "git": "https://github.com/phpusr/django-backup",
-            "ref": "16a060247ed3ada9b1999f97000cf0cd5bb9b0a3"
+            "ref": "cee32c5612f164501b0fa91d5b04249692a0da1b"
         },
         "google-api-core": {
             "hashes": [
