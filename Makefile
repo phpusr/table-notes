@@ -15,11 +15,11 @@ loaddata-prod:
 	make loaddata
 
 dumpdata:
-	@echo "=== Dumping $(PROD_DB_URL) ==="
+	@echo "=== Dumping $(DATABASE_URL) ==="
 	@pipenv run ./manage.py dumpdata --indent=2 -o $(BACKUP_JSON_FILE) #--traceback
 
 loaddata:
-	@echo "=== Restoring $(PROD_DB_URL) ==="
+	@echo "=== Restoring $(DATABASE_URL) ==="
 	@pipenv run ./manage.py flush
 	@pipenv run ./manage.py loaddata $(BACKUP_JSON_FILE) -e contenttypes.contenttype -e auth.permission -e admin
 
