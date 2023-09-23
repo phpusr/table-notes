@@ -19,7 +19,7 @@ import dj_database_url
 # ---------------------------------------
 NAME = 'Tabular Notes'
 
-VERSION = '1.5'
+VERSION = '1.6'
 
 EMPTY_VALUE_DISPLAY = ''
 # ---------------------------------------
