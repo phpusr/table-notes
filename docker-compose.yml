@@ -7,7 +7,7 @@ services:
     image: phpusr/tabular-notes
     restart: unless-stopped
     environment:
-      - DJANGO_DEBUG=${DEBUG:-FALSE}
+      - DJANGO_DEBUG=${DJANGO_DEBUG:-FALSE}
       - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
       - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
       - DJANGO_CSRF_TRUSTED_ORIGINS=${DJANGO_CSRF_TRUSTED_ORIGINS}
